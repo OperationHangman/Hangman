@@ -20,6 +20,7 @@ int main(void)
     int laenge;
     char eingabe;
 
+    //Initialisiert einen zufallsnummer generator
     srand((unsigned int)time(NULL));
     printf("\nWillkommen. Du hast noch %d Leben \n", leben);
 
@@ -37,6 +38,7 @@ int main(void)
 
     printf("%s\n",wort);
 
+    //Solange wie leben groeßer als 0 ist und das Wort nicht erraten wurde, also i kleiner als laenge ist
     while ((leben>0) && (i < laenge))
     {
         richtig = 0;
@@ -72,6 +74,7 @@ int main(void)
 
             for(x=0; x<laenge; x++)
             {
+                //Wenn die Eingabe == wie die Stelle aus dem Ausgangswort ist, so wird in wort diese Stelle von einem _ zu dem Buchstaben gesetzt
                 if(eingabe == list[ausgangswort][x])
                 {
                     wort[x] = eingabe;
@@ -85,7 +88,7 @@ int main(void)
                 leben--;
                 if(leben > 0)
                 {
-                    printf("Falsch. %i Du hast noch Leben uebrig.\n",leben);
+                    printf("Falsch. Du hast noch %i Leben uebrig.\n",leben);
                 }
                 else
                 {
