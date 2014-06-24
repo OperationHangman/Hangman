@@ -8,13 +8,13 @@
 //Die [4] gibt an wieviele Wörter in der Liste stehen
 char *list[4] =
 {
-    "analfetisch", "hartgeldnutte",
-    "bokunopico", "analgeneral"
+    "schmetterling", "elch",
+    "helikopter", "tafelbild"
 };
 
 int main(void)
 {
-    int ausgangswort, leben=8;
+    int worti, leben=8;
     char wort[25];
     int x,richtig,i = 0;
     int laenge;
@@ -24,16 +24,18 @@ int main(void)
     srand((unsigned int)time(NULL));
     printf("\nWillkommen. Du hast noch %d Leben \n", leben);
 
-    ausgangswort = rand() % 4;
+    worti = rand() % 4; //Die Zufallsnummer wird gespeichert in worti(index)
 
-    //Speichert die laenge des Ausgangswortes in laenge
-    laenge = strlen(list[ausgangswort]);
+    //Nimmt den Wert aus der Stelle in list heraus, die worti(random 1-X) erzeugt hat. Zudem speichert er auch die länge des Wortes in die Variable laenge
+    laenge = strlen(list[worti]);
 
-    //Speichert das urspruenglich erzeugte Randomwort(ausgangswort) in die variable wort und ersetzt die Buchstaben durch _
+    //Speichert in die variable wort das Symbol _ für die laenge des Wortes stellvertretend [x]
+    //Wird zur Ausgabe des Raten benutzt
     for(x=0; x<laenge; x++)
     {
         wort[x] = '_';
     }
+
     wort[laenge] = 0;
 
     printf("%s\n",wort);
@@ -41,6 +43,7 @@ int main(void)
     //Solange wie leben groeßer als 0 ist und das Wort nicht erraten wurde, also i kleiner als laenge ist
     while ((leben>0) && (i < laenge))
     {
+        //Leben wird auf 0 gesetzt. Sollte der Buchstabe nicht richtig geraten sein, so führt er die unten bestehende Zeile if(richtig == 0) aus und zieht ein Leben ab.
         richtig = 0;
         printf("Geben sie einen Buchstaben ein: ");
         do
@@ -62,6 +65,7 @@ int main(void)
             if(eingabe == wort[x])
             {
                 printf("Du hast den Buchstaben schon benutzt \n");
+                //Springt aus der Funktion zum Start der oberen while-schleife
                 break;
             }
         }
@@ -70,14 +74,17 @@ int main(void)
         {
             // Zeile Code, um zu betruegen oder auch zum testen :3
             // Auskommentieren bei richtigen Spiel
-            printf("%c, %s\n",eingabe,list[ausgangswort]);
+            printf("%c, %s\n",eingabe,list[worti]);
 
             for(x=0; x<laenge; x++)
             {
-                //Wenn die Eingabe == wie die Stelle aus dem Ausgangswort ist, so wird in wort diese Stelle von einem _ zu dem Buchstaben gesetzt
-                if(eingabe == list[ausgangswort][x])
+
+
+                //Wenn die Eingabe == wie die Stelle aus list des randomindex worti und x ist, so wird in wort diese Stelle von einem _ zu dem Buchstaben gesetzt
+                if(eingabe == list[worti][x])
                 {
                     wort[x] = eingabe;
+                    //i wird hochgezählt für die Abbruchbedingung ganz oben. Daran erkennt er, ob das Wort erraten wurde oder (noch) nicht
                     i++;
                     richtig = 1;
                 }
