@@ -128,7 +128,7 @@ int main(void)
                     printf("Du bist tot. :(\n");
                     printf("Das zu erratende Wort war:\n");
                     printf("%s\n",list[worti]);
-                    printf("%d",punkte);
+                     printf("Du hast %d von %d Punkten erreicht",punkte, hoechstpunktzahl);
                 }
 
             }
