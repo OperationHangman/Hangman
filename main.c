@@ -7,141 +7,35 @@
 // Liste der Wörter, die erraten werden können
 //Die [4] gibt an wieviele Wörter in der Liste stehen
 void zeichneGalgen(int leben);
+//struct list erstmal vermieden und einfache variante gewählt. Wollte erst die Wörter mit bestimmten Hinweisen belegen
+
 char *list[4] =
 {
     "schmetterling", "elch",
     "helikopter", "tafelbild"
 };
-void zeichneGalgen(int leben)
-{
-    switch(leben)
-    {
-    case 8:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
 
-    case 7:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
-
-    case 6:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | |\n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
-    case 5:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | |\n");
-        printf(" | |\n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
-    case 4:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | |\n");
-        printf(" | /|\n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
-
-    case 3:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | |\n");
-        printf(" | /|\\\n");
-        printf(" | \n");
-        printf(" | \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
-
-    case 2:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | |\n");
-        printf(" | /|\\\n");
-        printf(" | |\n");
-        printf(" | \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
-
-    case 1:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | |\n");
-        printf(" | /|\\\n");
-        printf(" | |\n");
-        printf(" | / \n");
-        printf(" |\n");
-        printf("---------\n");
-        break;
-
-    default:
-        printf(" ---\n");
-        printf(" | |\n");
-        printf(" | O\n");
-        printf(" | |\n");
-        printf(" | /|\\\n");
-        printf(" | |\n");
-        printf(" | / \\\n");
-        printf(" |\n");
-        printf("---------\n");
-
-}
-}
 int main(void)
 {
-    int worti, leben=8;
+    int worti, leben=8, schwierigkeitsgrad=1, punkte = 0;
     char wort[25];
     int x,richtig,i = 0;
-    int laenge;
+    int laenge, hoechstpunktzahl;
     char eingabe;
 
     //Initialisiert einen zufallsnummer generator
     srand((unsigned int)time(NULL));
     printf("\nWillkommen. Du hast noch %d Leben \n", leben);
+    printf("Waehlen sie einen Schwierigkeitsgrad von 1-3:");
+    scanf("%d", &schwierigkeitsgrad);
 
     worti = rand() % 4; //Die Zufallsnummer wird gespeichert in worti(index)
 
     //Nimmt den Wert aus der Stelle in list heraus, die worti(random 1-X) erzeugt hat. Zudem speichert er auch die länge des Wortes in die Variable laenge
     laenge = strlen(list[worti]);
-
+    hoechstpunktzahl = strlen(list[worti])*100;
     //Speichert in die variable wort das Symbol _ für die laenge des Wortes stellvertretend [x]
-    //Wird zur Ausgabe des Raten benutzt
+    //Wird zur Ausgabe des Raten benutzt bzw. um das Wort zu verschlüsseln
     for(x=0; x<laenge; x++)
     {
         wort[x] = '_';
@@ -160,7 +54,8 @@ int main(void)
         // Zeile Code, um zu betruegen oder auch zum testen :3
         // Auskommentieren bei richtigen Spiel
         printf("%c, %s\n",eingabe,list[worti]);
-        printf("Geben sie einen Buchstaben ein: ");
+        printf("Geben sie einen oder mehrere Buchstaben ein.\nAuch koennen sie das Wort direkt loesen: \n");
+        printf("Hinweis: Pro falsch erratenden Buchstaben erhalten Sie Abzüge\n");
 
         do
         {
@@ -206,7 +101,9 @@ int main(void)
                     //i wird hochgezählt für die Abbruchbedingung ganz oben. Daran erkennt er, ob das Wort erraten wurde oder (noch) nicht
                     i++;
                     richtig = 1;
+                    punkte = punkte + 100;
                 }
+
             }
 
             if(richtig == 0)
@@ -219,12 +116,19 @@ int main(void)
                     zeichneGalgen(leben);
                     printf("Falsch. Du hast noch %i Leben uebrig.\n",leben);
                     printf("Bisher erraten %s\n",wort);
+                    punkte = punkte - 100;
+
+
+
                 }
                 else
                 {
                     system("cls");
                     zeichneGalgen(leben);
                     printf("Du bist tot. :(\n");
+                    printf("Das zu erratende Wort war:\n");
+                    printf("%s\n",list[worti]);
+                    printf("%d",punkte);
                 }
 
             }
@@ -242,7 +146,9 @@ int main(void)
                 {
                     system("cls");
                     printf("Du gewinnst! :)\n");
+                    printf("Du hast %d von %d Punkten erreicht",punkte, hoechstpunktzahl);
                 }
+
             }
 
         }
