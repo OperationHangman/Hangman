@@ -45,6 +45,10 @@ int main(void)
     {
         //Leben wird auf 0 gesetzt. Sollte der Buchstabe nicht richtig geraten sein, so führt er die unten bestehende Zeile if(richtig == 0) aus und zieht ein Leben ab.
         richtig = 0;
+
+        // Zeile Code, um zu betruegen oder auch zum testen :3
+        // Auskommentieren bei richtigen Spiel
+        printf("%c, %s\n",eingabe,list[worti]);
         printf("Geben sie einen Buchstaben ein: ");
 
         do
@@ -77,11 +81,6 @@ int main(void)
 
         if(x==laenge)
         {
-
-            // Zeile Code, um zu betruegen oder auch zum testen :3
-            // Auskommentieren bei richtigen Spiel
-            printf("%c, %s\n",eingabe,list[worti]);
-
             for(x=0; x<laenge; x++)
             {
 
