@@ -46,6 +46,7 @@ int main(void)
         //Leben wird auf 0 gesetzt. Sollte der Buchstabe nicht richtig geraten sein, so führt er die unten bestehende Zeile if(richtig == 0) aus und zieht ein Leben ab.
         richtig = 0;
         printf("Geben sie einen Buchstaben ein: ");
+
         do
         {
             scanf("%c", &eingabe);
@@ -55,7 +56,9 @@ int main(void)
             if((eingabe > 32) && ((eingabe < 97) || (eingabe > 122)))
             {
                 printf("Ungueltiger Buchstabe\n Bitte geben Sie einen Buchstaben von A-Z ein: ");
+                printf("Bisher erraten %s\n",wort);
             }
+
 
         }
         while((eingabe < 97) || (eingabe > 122));
@@ -64,7 +67,9 @@ int main(void)
         {
             if(eingabe == wort[x])
             {
+                system("cls");
                 printf("Du hast den Buchstaben schon benutzt \n");
+                printf("Bisher erraten %s\n",wort);
                 //Springt aus der Funktion zum Start der oberen while-schleife
                 break;
             }
@@ -72,6 +77,7 @@ int main(void)
 
         if(x==laenge)
         {
+
             // Zeile Code, um zu betruegen oder auch zum testen :3
             // Auskommentieren bei richtigen Spiel
             printf("%c, %s\n",eingabe,list[worti]);
@@ -95,11 +101,13 @@ int main(void)
                 leben--;
                 if(leben > 0)
                 {
+                    system("cls");
                     printf("Falsch. Du hast noch %i Leben uebrig.\n",leben);
                     printf("Bisher erraten %s\n",wort);
                 }
                 else
                 {
+                    system("cls");
                     printf("Du bist tot. :(\n");
                 }
 
@@ -108,11 +116,13 @@ int main(void)
             {
                 if(i < laenge)
                 {
+                    system("cls");
                     printf("Richtig.\n");
                     printf("Bisher erraten %s\n",wort);
                 }
                 else
                 {
+                    system("cls");
                     printf("Du gewinnst! :)\n");
                 }
             }
