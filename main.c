@@ -101,6 +101,7 @@ int main(void)
                 if(leben > 0)
                 {
                     system("cls");
+                    //HIER AUFRUF FUNKTION ZEICHNE GALGEN
                     printf("Falsch. Du hast noch %i Leben uebrig.\n",leben);
                     printf("Bisher erraten %s\n",wort);
                 }
