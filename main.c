@@ -89,6 +89,7 @@ int main(void)
                 if(leben > 0)
                 {
                     printf("Falsch. Du hast noch %i Leben uebrig.\n",leben);
+                    printf("Bisher erraten %s\n",wort);
                 }
                 else
                 {
@@ -101,13 +102,14 @@ int main(void)
                 if(i < laenge)
                 {
                     printf("Richtig.\n");
+                    printf("Bisher erraten %s\n",wort);
                 }
                 else
                 {
                     printf("Du gewinnst! :)\n");
                 }
             }
-            printf("Bisher erraten %s\n",wort);
+
         }
     }
 }
