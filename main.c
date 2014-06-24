@@ -6,12 +6,123 @@
 
 // Liste der Wörter, die erraten werden können
 //Die [4] gibt an wieviele Wörter in der Liste stehen
+void zeichneGalgen(int leben);
 char *list[4] =
 {
     "schmetterling", "elch",
     "helikopter", "tafelbild"
 };
+void zeichneGalgen(int leben)
+{
+    switch(leben)
+    {
+    case 8:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
 
+    case 7:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
+
+    case 6:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | |\n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
+    case 5:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | |\n");
+        printf(" | |\n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
+    case 4:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | |\n");
+        printf(" | /|\n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
+
+    case 3:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | |\n");
+        printf(" | /|\\\n");
+        printf(" | \n");
+        printf(" | \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
+
+    case 2:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | |\n");
+        printf(" | /|\\\n");
+        printf(" | |\n");
+        printf(" | \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
+
+    case 1:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | |\n");
+        printf(" | /|\\\n");
+        printf(" | |\n");
+        printf(" | / \n");
+        printf(" |\n");
+        printf("---------\n");
+        break;
+
+    default:
+        printf(" ---\n");
+        printf(" | |\n");
+        printf(" | O\n");
+        printf(" | |\n");
+        printf(" | /|\\\n");
+        printf(" | |\n");
+        printf(" | / \\\n");
+        printf(" |\n");
+        printf("---------\n");
+
+}
+}
 int main(void)
 {
     int worti, leben=8;
@@ -59,6 +170,8 @@ int main(void)
 
             if((eingabe > 32) && ((eingabe < 97) || (eingabe > 122)))
             {
+                system("cls");
+                zeichneGalgen(leben);
                 printf("Ungueltiger Buchstabe\n Bitte geben Sie einen Buchstaben von A-Z ein: ");
                 printf("Bisher erraten %s\n",wort);
             }
@@ -72,6 +185,7 @@ int main(void)
             if(eingabe == wort[x])
             {
                 system("cls");
+                zeichneGalgen(leben);
                 printf("Du hast den Buchstaben schon benutzt \n");
                 printf("Bisher erraten %s\n",wort);
                 //Springt aus der Funktion zum Start der oberen while-schleife
@@ -102,12 +216,14 @@ int main(void)
                 {
                     system("cls");
                     //HIER AUFRUF FUNKTION ZEICHNE GALGEN
+                    zeichneGalgen(leben);
                     printf("Falsch. Du hast noch %i Leben uebrig.\n",leben);
                     printf("Bisher erraten %s\n",wort);
                 }
                 else
                 {
                     system("cls");
+                    zeichneGalgen(leben);
                     printf("Du bist tot. :(\n");
                 }
 
@@ -117,6 +233,8 @@ int main(void)
                 if(i < laenge)
                 {
                     system("cls");
+                    zeichneGalgen(leben);
+                    //HIER AUFRUF FUNKTION ZEICHNE GALGEN
                     printf("Richtig.\n");
                     printf("Bisher erraten %s\n",wort);
                 }
@@ -129,4 +247,6 @@ int main(void)
 
         }
     }
+
+
 }
