@@ -14,6 +14,11 @@ char *list[4] =
     "schmetterling", "elch",
     "helikopter", "tafelbild"
 };
+char *hinweisliste[4] =
+{
+    "ssdd", "elsdsdch",
+    "helikosdsdsdpter", "tafesdsdlbild"
+};
 
 int main(void)
 {
@@ -121,7 +126,13 @@ int main(void)
 
 
                 }
-                else
+                if(leben==1)
+                {
+                    printf("Hinweis\n");
+                    printf("%s\n",hinweisliste[worti]);
+
+                }
+                else if(leben ==0)
                 {
                     system("cls");
                     zeichneGalgen(leben);
